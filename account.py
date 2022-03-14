@@ -14,8 +14,13 @@ class Account:
         return
 
     def withdraw(self, amt):
-        self.__balance -= amt
-        return
+        if amt > self.__balance:
+            negative_balance = self.__balance - amt
+            print("This withdrawal would take your account balance to", negative_balance)
+            raise ArithmeticError
+        else:
+            self.__balance -= amt
+            return
 
     # getter
     def getbalance(self):
@@ -31,7 +36,7 @@ class Account:
     def __str__(self):
         return "Account has balance " + str(self.getbalance())
 
-    # need this code to run total_balance2 code in practice_instantiation file:
+    # need this code to run total_balance2 code in instantiation file:
     def __add__(self, other):
         return self.getbalance() + other.getbalance()
 
